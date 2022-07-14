@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_voting_app/admin/candidate_screen.dart';
+import 'package:flutter_voting_app/admin/create_votings.dart';
+import 'package:flutter_voting_app/admin/voters_screen.dart';
 import 'package:flutter_voting_app/my_theme.dart';
 
-class VoteSettings extends StatelessWidget {
+class VoteSettingsScreen extends StatelessWidget {
   static String ROUTE_NAME = 'vote_settings';
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,7 @@ class VoteSettings extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: MyThemeData.dark_blue,
         centerTitle: true,
-        title: Text('Vote Chain',
+        title: Text('Vote Settings',
           style: TextStyle(
               color: MyThemeData.white,
               fontSize: 35,
@@ -32,7 +35,9 @@ class VoteSettings extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(VotingScreen.ROUTE_NAME);
+                      },
                       icon:Icon(Icons.add,color: MyThemeData.white,)
                   ),
                   Text('CREATE',
@@ -56,7 +61,9 @@ class VoteSettings extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(VotersScreen.ROUTE_NAME);
+                      },
                       icon:Icon(Icons.add,color: MyThemeData.white,)
                   ),
                   Text('VOTERS',
@@ -80,7 +87,9 @@ class VoteSettings extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(CandidateScreen.ROUTE_NAME);
+                      },
                       icon:Icon(Icons.add,color: MyThemeData.white,)
                   ),
                   Text('CANDIDATES',

@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_voting_app/admin/vote_settings.dart';
 import 'package:flutter_voting_app/my_theme.dart';
-import 'package:flutter_voting_app/user/user_screen.dart';
+
+import '../auth/register/register_screen.dart';
 
 class AdminScreen extends StatelessWidget {
   static String ROUTE_NAME = 'admin';
@@ -13,7 +14,7 @@ class AdminScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: MyThemeData.dark_blue,
         centerTitle: true,
-        title: Text('Vote Chain',
+        title: Text('Admin Screen',
           style: TextStyle(
               color: MyThemeData.white,
               fontSize: 35,
@@ -48,7 +49,7 @@ class AdminScreen extends StatelessWidget {
                     )
                 ),
                 onPressed: (){
-                  Navigator.of(context).pushNamed(VoteSettings.ROUTE_NAME);
+                  Navigator.of(context).pushNamed(VoteSettingsScreen.ROUTE_NAME);
                   },
                 child: Text('VOTE SETTINGS',
                   style: TextStyle(
@@ -71,7 +72,7 @@ class AdminScreen extends StatelessWidget {
                     )
                 ),
                 onPressed: (){
-                  Navigator.of(context).pushNamed(UserScreen.ROUTE_NAME);
+                  Navigator.of(context).pushNamed(RegisterScreen.ROUTE_NAME);
                 },
                 child: Text('USERS SETTINGS',
                   style: TextStyle(

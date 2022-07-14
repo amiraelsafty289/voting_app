@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "802195220303",
-    "project_id": "flutter-voting-app-bed27",
-    "storage_bucket": "flutter-voting-app-bed27.appspot.com"
+    "project_number": "280294568792",
+    "project_id": "voting-app-2-953b1",
+    "storage_bucket": "voting-app-2-953b1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:802195220303:android:6ac06f6071576ea1d2873a",
+        "mobilesdk_app_id": "1:280294568792:android:0cb59186b893e81eedab2d",
         "android_client_info": {
           "package_name": "com.example.flutter_voting_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "802195220303-4ars74n3tbpe8sbhstoa55ufq65ne6uv.apps.googleusercontent.com",
+          "client_id": "280294568792-gskmisqpkjvk2jl62d4uumd7qr0pknpt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAPAzZk-DfjqPNeXXzXo9zYX4jH0Uz4SJM"
+          "current_key": "AIzaSyDpoTpYgFHTb_wc_9o-8JmanUst3IBdGFA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "802195220303-4ars74n3tbpe8sbhstoa55ufq65ne6uv.apps.googleusercontent.com",
+              "client_id": "280294568792-gskmisqpkjvk2jl62d4uumd7qr0pknpt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_voting_app/utils.dart';
 
 class MyUser{
   static String collectionName = 'users';
