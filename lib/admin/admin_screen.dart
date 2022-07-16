@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_voting_app/admin/vote_settings.dart';
+import 'package:flutter_voting_app/data/auth_helper.dart';
 import 'package:flutter_voting_app/my_theme.dart';
 
 import '../auth/register/register_screen.dart';
@@ -14,12 +15,24 @@ class AdminScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: MyThemeData.dark_blue,
         centerTitle: true,
-        title: Text('Admin Screen',
-          style: TextStyle(
-              color: MyThemeData.white,
-              fontSize: 35,
-              fontWeight: FontWeight.bold
-          ),
+        title: Row(
+          children: [
+            Text('Admin Screen',
+              style: TextStyle(
+                  color: MyThemeData.white,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold
+              ),
+
+            ),
+            Spacer(),
+            InkWell(
+                onTap: (){
+                  AuthHelper.currentUser = null;
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.logout))
+          ],
         ),
       ),
       body: Container(

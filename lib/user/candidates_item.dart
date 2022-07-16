@@ -5,6 +5,7 @@ import 'package:flutter_voting_app/data/voting.dart';
 import 'package:flutter_voting_app/my_theme.dart';
 import 'package:flutter_voting_app/user/candidate_details_screen.dart';
 import 'package:flutter_voting_app/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CandidateItem extends StatelessWidget {
 Candidate candidate ;
@@ -30,31 +31,33 @@ CandidateItem({required this.candidate,required this.voting });
             Row(
               children: [
                 // candidate.image
-                Image.asset('assets/images/login_image.png',
+                Image.network(candidate.image.isEmpty?
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvRuUUIdInkEuFXdS06y2_mjxlsNCso1t4bQ&usqp=CAU":candidate.image,
                   width: 70,
                   height: 70,
                 ),
                 SizedBox(width: 15,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Name : ${candidate.name}',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: MyThemeData.dark_blue
-                      ),
-                    ),
-                    Text('Age : ${candidate.age}',
-                      style: TextStyle(
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Name : ${candidate.name}',
+                        style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w500,
                           color: MyThemeData.dark_blue
+                        ),
                       ),
-                    )
-                  ],
+                      Text('Age : ${candidate.age}',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            color: MyThemeData.dark_blue
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                Spacer(),
                 ElevatedButton(
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.all(15)),
@@ -68,12 +71,21 @@ CandidateItem({required this.candidate,required this.voting });
                     ),
                     onPressed: (){
                       showVoteMessage('Are you sure you want to vote this Person ', context,(){
-                        print('Amira: before ${voting.totalVoters}');
-                        print('Amira:before ${candidate.votersCounter}');
-                        vote(voting, candidate,context);
-                        print('Amira: after ${voting.totalVoters}');
-                        print('Amira: after ${candidate.votersCounter}');
-                        showVoteSuccessfullyMessage('You have voted for ${candidate.name} successfully ', context);
+                        Navigator.pop(context);
+                        vote(voting, candidate,context).then((value) {
+                          if(value){
+                            Fluttertoast.showToast(
+                                msg: "You have voted sucessfuly to ${candidate.name}",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.black,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
+                            Navigator.pop(context);
+                          }
+                        });
                       } );
 
                     },

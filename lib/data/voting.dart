@@ -11,11 +11,11 @@ class Voting{
     required this.endDate , required this.totalVoters});
 
   Voting.fromJson(Map<String,dynamic> json):this(
-      // voteId: json['vote_id'] as String ,
+       voteId: json['vote_id'] as String ,
       voteName: json['vote_name'] as String,
       startDate: json['start_date'] as int,
       endDate: json['end_date'] as int,
-    totalVoters: 0
+    totalVoters: json["total_voters"]
   );
   Map<String , dynamic>toJson(){
     return {
@@ -23,7 +23,7 @@ class Voting{
       'vote_name' : voteName,
       'start_date' : startDate ,
       'end_date' : endDate,
-      'total_voters' :0
+      'total_voters' :totalVoters
     };
   }
   static CollectionReference<Voting>withConverter(){

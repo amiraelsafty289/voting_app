@@ -11,10 +11,7 @@ class ResultItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    double result = candidate.votersCounter / voting.totalVoters  ;
-   print('Amira: $result');
-   print('Amira: ${candidate.votersCounter}');
-   print('Amira: ${voting.totalVoters}');
-
+   ///todo we have to fix result item
    return Container(
       margin: EdgeInsets.all(12),
       child: Column(
@@ -40,8 +37,8 @@ class ResultItem extends StatelessWidget {
             width: 280.0,
             animation: true,
             lineHeight: 24.0,
-            percent: result/10,
-            center: Text("$result%",
+            percent: result,
+            center: Text("${(result*100).toStringAsFixed(2)}%",
               style: TextStyle(
                 color: MyThemeData.white,
                 fontWeight: FontWeight.bold,

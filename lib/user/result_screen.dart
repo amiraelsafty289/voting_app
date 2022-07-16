@@ -13,7 +13,6 @@ List<Candidate> candidateList = [];
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)!.settings.arguments as Voting ;
-    print('Amira args:${args.totalVoters}');
     return Scaffold(
         backgroundColor: MyThemeData.background,
         appBar: AppBar(

@@ -17,18 +17,18 @@ class Candidate{
       candidateId: json['candidate_id'] as String,
       name: json['name'] as String,
       age: json['age'] as String,
-    image: '',
+    image: json["image"]??"",
     description: json['description'] as String,
-    votersCounter:  0
+    votersCounter:  json["voters_counter"]??0
   );
   Map<String , dynamic>toJson(){
     return {
       'candidate_id' : candidateId ,
       'name' : name,
       'age' : age ,
-      'image' : '',
+      'image' : image,
       'description' : description,
-      'voters_counter' : 0
+      'voters_counter' : votersCounter
     };
   }
   static CollectionReference<Candidate>withConverter(){

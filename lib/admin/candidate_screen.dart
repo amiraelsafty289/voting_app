@@ -2,18 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_voting_app/data/firebase_utils.dart';
 import 'package:flutter_voting_app/my_theme.dart';
 
-class CandidateScreen extends StatelessWidget {
+import '../utils.dart';
+
+class CandidateScreen extends StatefulWidget {
   static String ROUTE_NAME = 'candidate';
+
+  @override
+  State<CandidateScreen> createState() => _CandidateScreenState();
+}
+
+class _CandidateScreenState extends State<CandidateScreen> {
   var formKey = GlobalKey<FormState>();
+
   String image = '';
+
   String name = '';
+
   String age = '';
+
   String voteId = '';
+
   String description = '';
+
   String candidateId = '';
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: MyThemeData.background,
       appBar: AppBar(
         backgroundColor: MyThemeData.dark_blue,
@@ -168,7 +187,12 @@ class CandidateScreen extends StatelessWidget {
         child: Icon(Icons.add, color: MyThemeData.white, size: 30),
         onPressed: () {
           if (formKey.currentState?.validate() == true) {
-            addCandidate(voteId, name, age, description, context, candidateId);
+            addCandidate(voteId, name, age, description, context, candidateId).then((value) {
+              showMessage('Candidates added Successfully', context);
+            }).onError((error, stackTrace) {
+              print("Error -> ${error.toString()} \n stacktrace -> ${stackTrace}");
+              showMessage('Try again to add another candidates', context);
+            });
             Navigator.pop(context);
           }
         },

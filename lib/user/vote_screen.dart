@@ -13,7 +13,7 @@ class VoteScreen extends StatefulWidget {
 }
 
 class _VoteScreenState extends State<VoteScreen> {
-Future<QuerySnapshot> votingFuture = getAllVotings();
+Future<List<Voting>> votingFuture = getAllVotings();
 List<Voting> votingList = [];
   @override
   Widget build(BuildContext context) {
@@ -30,15 +30,12 @@ List<Voting> votingList = [];
           ),
         ),
       ) ,
-      body: FutureBuilder<QuerySnapshot>(
+      body: FutureBuilder<List<Voting>>(
         future: votingFuture,
         builder: (context , snapShot){
           if(snapShot.hasData){
-            votingList = snapShot.data!.docs.map((doc){
-              Voting voting = Voting.fromJson(doc.data() as Map<String , dynamic>);
-              voting.voteId = doc.id ;
-              return voting ;
-            }).toList();
+            votingList = snapShot.data! ;
+
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

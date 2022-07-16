@@ -26,8 +26,12 @@ class CandidateDetailsScreen extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CircleAvatar(
-              radius: 30,
-              child: Image.asset('assets/images/login_image.png'),
+              radius: 60,
+              child: Image.network(args.image.isEmpty?
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvRuUUIdInkEuFXdS06y2_mjxlsNCso1t4bQ&usqp=CAU":args.image,
+                width: 240,
+                height: 240,
+              ),
             ),
             SizedBox(height: 25,),
             Container(

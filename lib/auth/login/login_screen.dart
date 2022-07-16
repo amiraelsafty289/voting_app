@@ -22,7 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late MyUser myUser ;
 
   var formKey = GlobalKey<FormState>();
-
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onChanged: (text){
                         email = text ;
                       },
+                      controller: emailController,
                       validator: (text){
                         if(text == null || text.trim().isEmpty){
                           return 'Please enter email address';
@@ -69,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       decoration: InputDecoration(
                         labelText: 'Email Address',
+                          prefixIcon: Icon(Icons.email),
                         labelStyle: TextStyle(
                           color: MyThemeData.gray,
                           fontSize: 22,
@@ -87,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onChanged: (text){
                         password = text ;
                       },
+                      controller: passwordController,
                       validator: (text){
                         if(text == null || text.trim().isEmpty){
                           return 'Please enter password';
@@ -96,8 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null ;
                       },
+                      obscureText: true ,
                       decoration: InputDecoration(
                           labelText: 'Password',
+                          prefixIcon: Icon(Icons.password),
                           labelStyle: TextStyle(
                               color: MyThemeData.gray,
                               fontSize: 22,
@@ -186,6 +192,8 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.of(context).pushReplacementNamed(UserScreen.ROUTE_NAME,
           arguments: myUser
         );
+            emailController.clear();
+            passwordController.clear();
       }
     }catch(error){
       hideLoading(context);
@@ -200,7 +208,9 @@ class _LoginScreenState extends State<LoginScreen> {
       hideLoading(context);
       if(result.user != null && result.user!.email == 'admin@gmail.com'){
         showMessage('Admin Logged in Successfully', context);
-        Navigator.of(context).pushNamed(AdminScreen.ROUTE_NAME);
+        Navigator.of(context).pushReplacementNamed(AdminScreen.ROUTE_NAME);
+        emailController.clear();
+        passwordController.clear();
       }
     }catch(error){
       hideLoading(context);

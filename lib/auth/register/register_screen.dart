@@ -4,6 +4,7 @@ import 'package:flutter_voting_app/data/firebase_utils.dart';
 import 'package:flutter_voting_app/data/my_user.dart';
 import 'package:flutter_voting_app/my_theme.dart';
 import 'package:flutter_voting_app/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../login/login_screen.dart';
 
@@ -163,14 +164,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
       UserCredential result =  await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
       hideLoading(context);
       if(result.user != null){
-        showMessage('User Registered Successfully', context);
         var myUser = MyUser(
             id:result.user!.uid ,
             userName: userName,
             email: email,
             firstLoginTime: true);
         addUserToFireStore(myUser).then((value){
-          Navigator.of(context).pushNamed(LoginScreen.ROUTE_NAME);
+          Navigator.pop(context);
+          Fluttertoast.showToast(
+              msg: "Added user successfully",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.black,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
         }).onError((error, stackTrace) {
           showMessage(error.toString(), context);
         });
@@ -180,6 +189,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
       hideLoading(context);
       showMessage(error.toString(), context);
     }
-
   }
 }
